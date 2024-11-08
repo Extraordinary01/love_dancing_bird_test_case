@@ -1,5 +1,4 @@
 import json
-from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import List, Dict
 from pathlib import Path
@@ -39,6 +38,10 @@ class DanceClass:
             return False
 
     def save_data(self):
+        """Saving and updating class info in the local store
+
+        Serializing into JSON format DanceClass and Student classes.
+        """
         with self.data_save_path.open('r') as f:
             data = json.load(f)
 
@@ -58,6 +61,7 @@ class DanceClass:
 
     @classmethod
     def init_from_data(cls, class_data, data_save_path: Path):
+        """Getting class instance from local store."""
         students = {}
         for student_type, raw_students in class_data["students"].items():
             students[StudentType(int(student_type))] = [Student.deserialize(raw_data) for raw_data in raw_students]

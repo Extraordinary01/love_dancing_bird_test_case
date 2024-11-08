@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
         try:
             room_capacity = int(input("Please provide room capacity of this class!\n"))
-        except TypeError:
+        except ValueError:
             print("You should pass a number for setting room capacity! Create class from beginning!\n\n")
             continue
 
